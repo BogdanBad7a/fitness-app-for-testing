@@ -17,15 +17,25 @@
           <button id="clear-workout" class="ghost-button" type="button">Reset</button>
         </div>
 
-        <p class="quick-help">Ask ChatGPT for a workout, then paste the workout into the prompt below and copy the result into this app.</p>
-
-        <div class="prompt-card">
-          <div class="prompt-card-head">
-            <p class="prompt-title">Conversion prompt</p>
-            <button id="copy-prompt" class="secondary-button compact-button" type="button">Copy Prompt</button>
+        <div class="step-block">
+          <div class="step-badge">1</div>
+          <div class="step-content">
+            <p class="step-title">Ask ChatGPT for a workout</p>
+            <p class="quick-help">Start with your workout request in ChatGPT.</p>
           </div>
-          <p class="prompt-hint">Preview only. Use the button to copy the full prompt.</p>
-          <pre id="prompt-box" class="prompt-box"><code>Convert the workout above into the exact format required by my app.
+        </div>
+
+        <div class="step-block">
+          <div class="step-badge">2</div>
+          <div class="step-content">
+            <p class="step-title">Copy this conversion prompt</p>
+            <div class="prompt-card">
+              <div class="prompt-card-head">
+                <p class="prompt-title">Conversion prompt</p>
+                <button id="copy-prompt" class="secondary-button compact-button" type="button">Copy Prompt</button>
+              </div>
+              <p class="prompt-hint">Preview only. Use the button to copy the full prompt.</p>
+              <pre id="prompt-box" class="prompt-box"><code>Convert the workout above into the exact format required by my app.
 
 Output only one plain text code block.
 One exercise per line.
@@ -42,23 +52,35 @@ Ignore warmups, cooldowns, stretching, commentary, target muscles, explanations,
 Ignore cardio interval blocks unless they are clearly written as standard exercises with sets and reps.
 If an exercise has no stated rest time, use 60.
 Output only valid lines for the app inside the code block.</code></pre>
+          </div>
         </div>
 
         <div class="arrow-wrap" aria-hidden="true">
           <div class="down-arrow"></div>
         </div>
 
-        <label class="input-label" for="workout-input">Accepted format</label>
-        <p class="format-hint">One line per exercise: <code>Exercise Name | Sets | Reps | RestSeconds</code></p>
-        <textarea
-          id="workout-input"
-          spellcheck="false"
-          placeholder="Barbell Bench Press | 4 | 8 | 90&#10;Incline Dumbbell Press | 3 | 10 | 75&#10;Cable Fly | 3 | 12 | 60"
-        ></textarea>
+        <div class="step-block">
+          <div class="step-badge">3</div>
+          <div class="step-content">
+            <label class="input-label" for="workout-input">Paste the converted workout</label>
+            <p class="format-hint">One line per exercise: <code>Exercise Name | Sets | Reps | RestSeconds</code></p>
+            <textarea
+              id="workout-input"
+              spellcheck="false"
+              placeholder="Barbell Bench Press | 4 | 8 | 90&#10;Incline Dumbbell Press | 3 | 10 | 75&#10;Cable Fly | 3 | 12 | 60"
+            ></textarea>
+          </div>
+        </div>
 
-        <div class="entry-actions">
-          <button id="load-workout" class="primary-button" type="button">Load Workout</button>
-          <button id="load-sample" class="secondary-button" type="button">Sample</button>
+        <div class="step-block">
+          <div class="step-badge">4</div>
+          <div class="step-content">
+            <p class="step-title">Load the workout into the app</p>
+            <div class="entry-actions">
+              <button id="load-workout" class="primary-button" type="button">Load Workout</button>
+              <button id="load-sample" class="secondary-button" type="button">Sample</button>
+            </div>
+          </div>
         </div>
 
         <p id="message" class="message" role="status" aria-live="polite"></p>
