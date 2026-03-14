@@ -76,30 +76,52 @@ h1 {
 .progress-text,
 .meta-label,
 .meta-value,
-.intro-steps {
+.quick-help,
+.prompt-title {
   margin: 0;
 }
 
-.intro-steps {
+.quick-help {
   margin-top: 24px;
-  padding-left: 22px;
-  display: grid;
-  gap: 12px;
+  color: var(--muted);
+  line-height: 1.45;
+  overflow-wrap: anywhere;
 }
 
-.intro-steps li {
-  color: var(--text);
-  line-height: 1.45;
+.prompt-card {
+  margin-top: 16px;
+  padding: 14px;
+  border-radius: 22px;
+  background: rgba(255, 250, 245, 0.9);
+  border: 1px solid rgba(38, 22, 13, 0.08);
+}
+
+.prompt-card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.prompt-title {
+  font-weight: 700;
+}
+
+.compact-button {
+  padding: 10px 14px;
+  flex: 0 0 auto;
 }
 
 .prompt-box {
-  margin: 10px 0 0;
+  margin: 0;
   padding: 14px;
   border-radius: 18px;
   background: #2d1b11;
   color: #fff7ef;
-  overflow-x: auto;
   white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  word-break: break-word;
   border: 1px solid rgba(255, 255, 255, 0.06);
 }
 
@@ -336,7 +358,8 @@ button:disabled {
   .panel-header,
   .runner-topline,
   .entry-actions,
-  .runner-actions {
+  .runner-actions,
+  .prompt-card-head {
     flex-direction: column;
     align-items: stretch;
   }

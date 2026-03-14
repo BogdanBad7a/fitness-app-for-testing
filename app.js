@@ -8,8 +8,10 @@ const message = document.querySelector("#message");
 const workoutCard = document.querySelector("#workout-card");
 const progressText = document.querySelector("#progress-text");
 const runnerPanel = document.querySelector("#runner-panel");
+const promptBox = document.querySelector("#prompt-box");
 const loadWorkoutButton = document.querySelector("#load-workout");
 const loadSampleButton = document.querySelector("#load-sample");
+const copyPromptButton = document.querySelector("#copy-prompt");
 const clearWorkoutButton = document.querySelector("#clear-workout");
 const previousSetButton = document.querySelector("#previous-set");
 const completeSetButton = document.querySelector("#complete-set");
@@ -44,6 +46,15 @@ loadWorkoutButton.addEventListener("click", () => {
 loadSampleButton.addEventListener("click", () => {
   input.value = SAMPLE_WORKOUT;
   setMessage("Sample workout inserted.", "success");
+});
+
+copyPromptButton.addEventListener("click", async () => {
+  try {
+    await navigator.clipboard.writeText(promptBox.innerText.trim());
+    setMessage("Prompt copied.", "success");
+  } catch {
+    setMessage("Could not copy automatically. Copy the prompt manually.", "error");
+  }
 });
 
 clearWorkoutButton.addEventListener("click", () => {

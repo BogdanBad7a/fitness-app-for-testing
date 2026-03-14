@@ -17,32 +17,31 @@
           <button id="clear-workout" class="ghost-button" type="button">Reset</button>
         </div>
 
-        <ol class="intro-steps">
-          <li>Go to ChatGPT.</li>
-          <li>Ask for a workout, or paste the workout you already planned for today.</li>
-          <li>
-            Give it this conversion prompt and copy the result:
-            <pre class="prompt-box"><code>Convert the workout above into the exact format required by my app.
+        <p class="quick-help">Ask ChatGPT for a workout, then paste the workout into the prompt below and copy the result into this app.</p>
 
-Rules:
-- Output only one plain text code block
-- Do not write any explanation, intro, or notes
-- One exercise per line
-- Use this exact format for every line:
+        <div class="prompt-card">
+          <div class="prompt-card-head">
+            <p class="prompt-title">Conversion prompt</p>
+            <button id="copy-prompt" class="secondary-button compact-button" type="button">Copy</button>
+          </div>
+          <pre id="prompt-box" class="prompt-box"><code>Convert the workout above into the exact format required by my app.
+
+Output only one plain text code block.
+One exercise per line.
+Use exactly this format:
 Exercise Name | Sets | Reps | RestSeconds
-- Use only whole numbers
-- If a section says "perform X rounds", use X as the sets value for each exercise in that section unless a different set count is explicitly given
-- If rest is given per exercise, use that rest value
-- If rest is given only between rounds, use that same rest value for every exercise in that section
-- If reps are written as "12 per leg" or similar, keep only the number 12
-- If reps are written as a range like 8-10, use the first number
-- Ignore warmups, cooldowns, stretching, commentary, target muscles, explanations, and time estimates
-- Ignore cardio interval blocks unless they are clearly written as standard exercises with sets and reps
-- If an exercise has no stated rest time, use 60
-- Output only valid lines for the app inside the code block</code></pre>
-          </li>
-          <li>Paste the output in the box below.</li>
-        </ol>
+
+Use only whole numbers.
+If a section says perform X rounds, use X as the sets value for each exercise in that section unless a different set count is explicitly given.
+If rest is given per exercise, use that rest value.
+If rest is given only between rounds, use that same rest value for every exercise in that section.
+If reps are written as 12 per leg, keep only 12.
+If reps are written as a range like 8-10, use the first number.
+Ignore warmups, cooldowns, stretching, commentary, target muscles, explanations, and time estimates.
+Ignore cardio interval blocks unless they are clearly written as standard exercises with sets and reps.
+If an exercise has no stated rest time, use 60.
+Output only valid lines for the app inside the code block.</code></pre>
+        </div>
 
         <div class="arrow-wrap" aria-hidden="true">
           <div class="down-arrow"></div>
