@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gym Timer</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="panel panel-entry">
+        <div class="panel-header">
+          <div>
+            <p class="eyebrow">Today's Workout</p>
+            <h1>Paste and load</h1>
+          </div>
+          <button id="clear-workout" class="ghost-button" type="button">Reset</button>
+        </div>
+
+        <label class="input-label" for="workout-input">Accepted format</label>
+        <p class="format-hint">One line per exercise: <code>Exercise Name | Sets | Reps | RestSeconds</code></p>
+        <textarea
+          id="workout-input"
+          spellcheck="false"
+          placeholder="Barbell Bench Press | 4 | 8 | 90&#10;Incline Dumbbell Press | 3 | 10 | 75&#10;Cable Fly | 3 | 12 | 60"
+        ></textarea>
+
+        <div class="entry-actions">
+          <button id="load-workout" class="primary-button" type="button">Load Workout</button>
+          <button id="load-sample" class="secondary-button" type="button">Sample</button>
+        </div>
+
+        <p id="message" class="message" role="status" aria-live="polite"></p>
+      </section>
+
+      <section class="panel panel-runner">
+        <div class="runner-topline">
+          <p class="eyebrow">Workout Runner</p>
+          <p id="progress-text" class="progress-text">No workout loaded</p>
+        </div>
+
+        <div id="workout-card" class="workout-card empty">
+          <p class="empty-state">Load a workout to start moving through sets.</p>
+        </div>
+
+        <div class="runner-actions">
+          <button id="complete-set" class="primary-button" type="button" disabled>Set Done</button>
+          <button id="skip-rest" class="secondary-button" type="button" disabled>Skip Rest</button>
+        </div>
+      </section>
+    </main>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
