@@ -12,9 +12,40 @@
         <div class="panel-header">
           <div>
             <p class="eyebrow">Today's Workout</p>
-            <h1>Paste and load</h1>
+            <h1>Load today's session</h1>
           </div>
           <button id="clear-workout" class="ghost-button" type="button">Reset</button>
+        </div>
+
+        <ol class="intro-steps">
+          <li>Go to ChatGPT.</li>
+          <li>Ask for a workout, or paste the workout you already planned for today.</li>
+          <li>
+            Give it this conversion prompt and copy the result:
+            <pre class="prompt-box"><code>Convert the workout above into the exact format required by my app.
+
+Rules:
+- Output only one plain text code block
+- Do not write any explanation, intro, or notes
+- One exercise per line
+- Use this exact format for every line:
+Exercise Name | Sets | Reps | RestSeconds
+- Use only whole numbers
+- If a section says "perform X rounds", use X as the sets value for each exercise in that section unless a different set count is explicitly given
+- If rest is given per exercise, use that rest value
+- If rest is given only between rounds, use that same rest value for every exercise in that section
+- If reps are written as "12 per leg" or similar, keep only the number 12
+- If reps are written as a range like 8-10, use the first number
+- Ignore warmups, cooldowns, stretching, commentary, target muscles, explanations, and time estimates
+- Ignore cardio interval blocks unless they are clearly written as standard exercises with sets and reps
+- If an exercise has no stated rest time, use 60
+- Output only valid lines for the app inside the code block</code></pre>
+          </li>
+          <li>Paste the output in the box below.</li>
+        </ol>
+
+        <div class="arrow-wrap" aria-hidden="true">
+          <div class="down-arrow"></div>
         </div>
 
         <label class="input-label" for="workout-input">Accepted format</label>
@@ -33,7 +64,7 @@
         <p id="message" class="message" role="status" aria-live="polite"></p>
       </section>
 
-      <section class="panel panel-runner">
+      <section id="runner-panel" class="panel panel-runner">
         <div class="runner-topline">
           <p class="eyebrow">Workout Runner</p>
           <p id="progress-text" class="progress-text">No workout loaded</p>
@@ -44,6 +75,7 @@
         </div>
 
         <div class="runner-actions">
+          <button id="previous-set" class="ghost-button" type="button" disabled>Previous Set</button>
           <button id="complete-set" class="primary-button" type="button" disabled>Set Done</button>
           <button id="skip-rest" class="secondary-button" type="button" disabled>Skip Rest</button>
         </div>

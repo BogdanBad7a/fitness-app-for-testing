@@ -7,9 +7,11 @@ const input = document.querySelector("#workout-input");
 const message = document.querySelector("#message");
 const workoutCard = document.querySelector("#workout-card");
 const progressText = document.querySelector("#progress-text");
+const runnerPanel = document.querySelector("#runner-panel");
 const loadWorkoutButton = document.querySelector("#load-workout");
 const loadSampleButton = document.querySelector("#load-sample");
 const clearWorkoutButton = document.querySelector("#clear-workout");
+const previousSetButton = document.querySelector("#previous-set");
 const completeSetButton = document.querySelector("#complete-set");
 const skipRestButton = document.querySelector("#skip-rest");
 
@@ -33,6 +35,7 @@ loadWorkoutButton.addEventListener("click", () => {
     setMessage(`Loaded ${exercises.length} exercise${exercises.length === 1 ? "" : "s"}.`, "success");
     render();
     syncTimer();
+    focusRunner();
   } catch (error) {
     setMessage(error.message, "error");
   }
@@ -50,6 +53,18 @@ clearWorkoutButton.addEventListener("click", () => {
   saveState();
   setMessage("Workout reset.", "success");
   render();
+});
+
+previousSetButton.addEventListener("click", () => {
+  if (!hasWorkoutLoaded() || isAtFirstSet()) {
+    return;
+  }
+
+  goToPreviousSet();
+  saveState();
+  setMessage("Moved back to the previous set.", "success");
+  render();
+  syncTimer();
 });
 
 completeSetButton.addEventListener("click", () => {
@@ -177,6 +192,7 @@ function render() {
     progressText.textContent = "No workout loaded";
     workoutCard.className = "workout-card empty";
     workoutCard.innerHTML = '<p class="empty-state">Load a workout to start moving through sets.</p>';
+    previousSetButton.disabled = true;
     completeSetButton.disabled = true;
     skipRestButton.disabled = true;
     skipRestButton.textContent = "Skip Rest";
@@ -191,6 +207,7 @@ function render() {
       <h2 class="exercise-name">Done.</h2>
       <div class="up-next">You finished every set in this session.</div>
     `;
+    previousSetButton.disabled = false;
     completeSetButton.disabled = true;
     skipRestButton.disabled = false;
     skipRestButton.textContent = "New Workout";
@@ -229,6 +246,7 @@ function render() {
     <div class="up-next">${buildNextText()}</div>
   `;
 
+  previousSetButton.disabled = isAtFirstSet();
   completeSetButton.disabled = isResting;
   skipRestButton.disabled = false;
   skipRestButton.textContent = isResting ? "Skip Rest" : "Skip Exercise Rest";
@@ -290,6 +308,27 @@ function advanceAfterRest() {
   render();
 }
 
+function goToPreviousSet() {
+  stopCountdown();
+
+  if (state.mode === "done") {
+    const lastExercise = state.exercises[state.exercises.length - 1];
+    state.exerciseIndex = state.exercises.length - 1;
+    state.setIndex = lastExercise.sets - 1;
+  } else if (state.mode === "rest") {
+    // During rest, the visible set is the one just completed.
+  } else if (state.setIndex > 0) {
+    state.setIndex -= 1;
+  } else if (state.exerciseIndex > 0) {
+    state.exerciseIndex -= 1;
+    state.setIndex = state.exercises[state.exerciseIndex].sets - 1;
+  }
+
+  state.mode = "active";
+  state.restEndsAt = null;
+  state.completedAt = null;
+}
+
 function getRestRemainingSeconds() {
   if (!state.restEndsAt) {
     return 0;
@@ -306,6 +345,10 @@ function formatSeconds(seconds) {
 
 function hasWorkoutLoaded() {
   return state.exercises.length > 0;
+}
+
+function isAtFirstSet() {
+  return state.exerciseIndex === 0 && state.setIndex === 0 && state.mode !== "done";
 }
 
 function setMessage(text, type = "") {
@@ -339,6 +382,10 @@ function stopCountdown() {
     window.clearInterval(countdownInterval);
     countdownInterval = null;
   }
+}
+
+function focusRunner() {
+  runnerPanel.scrollIntoView({ behavior: "smooth", block: "start" });
 }
 
 function playAlert() {
