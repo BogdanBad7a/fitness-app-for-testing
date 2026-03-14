@@ -20,9 +20,7 @@ const skipRestButton = document.querySelector("#skip-rest");
 let state = loadStoredState();
 let countdownInterval = null;
 
-if (!state.rawInput) {
-  input.value = SAMPLE_WORKOUT;
-} else {
+if (state.rawInput) {
   input.value = state.rawInput;
 }
 
@@ -60,7 +58,7 @@ copyPromptButton.addEventListener("click", async () => {
 clearWorkoutButton.addEventListener("click", () => {
   stopCountdown();
   state = defaultState();
-  input.value = SAMPLE_WORKOUT;
+  input.value = "";
   saveState();
   setMessage("Workout reset.", "success");
   render();
@@ -118,7 +116,7 @@ skipRestButton.addEventListener("click", () => {
 
   if (state.mode === "done") {
     state = defaultState();
-    input.value = SAMPLE_WORKOUT;
+    input.value = "";
     saveState();
     setMessage("Ready for a new workout.", "success");
     render();
