@@ -79,37 +79,33 @@ h1 {
 .quick-help,
 .prompt-title,
 .prompt-hint,
-.step-title {
+.step-title,
+.step-line,
+.step-number {
   margin: 0;
 }
 
 .step-block {
   margin-top: 18px;
-  display: grid;
-  grid-template-columns: 42px minmax(0, 1fr);
-  gap: 14px;
-  align-items: start;
-}
-
-.step-badge {
-  width: 42px;
-  height: 42px;
-  display: grid;
-  place-items: center;
-  border-radius: 50%;
-  background: var(--accent);
-  color: #fff8f0;
-  font-weight: 800;
-  box-shadow: 0 10px 24px rgba(199, 91, 18, 0.22);
 }
 
 .step-content {
   min-width: 0;
 }
 
-.step-title {
-  font-weight: 700;
-  margin-bottom: 8px;
+.step-line,
+.input-label {
+  font-size: clamp(1rem, 2.1vw, 1.08rem);
+  line-height: 1.45;
+}
+
+.step-line {
+  color: var(--text);
+}
+
+.step-number {
+  display: inline-block;
+  min-width: 2rem;
 }
 
 .quick-help {
@@ -201,6 +197,7 @@ h1 {
 
 .input-label {
   display: block;
+  margin-top: 0;
   margin-bottom: 8px;
   font-weight: 600;
 }
@@ -416,8 +413,4 @@ button:disabled {
     text-align: left;
   }
 
-  .step-block {
-    grid-template-columns: 1fr;
-    gap: 10px;
-  }
 }

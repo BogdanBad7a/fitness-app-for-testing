@@ -18,17 +18,20 @@
         </div>
 
         <div class="step-block">
-          <div class="step-badge">1</div>
           <div class="step-content">
-            <p class="step-title">Ask ChatGPT for a workout</p>
-            <p class="quick-help">Start with your workout request in ChatGPT.</p>
+            <p class="step-line"><span class="step-number">1.</span> Go to ChatGPT.</p>
           </div>
         </div>
 
         <div class="step-block">
-          <div class="step-badge">2</div>
           <div class="step-content">
-            <p class="step-title">Copy this conversion prompt</p>
+            <p class="step-line"><span class="step-number">2.</span> Ask for a workout, or paste the workout you already planned for today.</p>
+          </div>
+        </div>
+
+        <div class="step-block">
+          <div class="step-content">
+            <p class="step-line"><span class="step-number">3.</span> Give it this conversion prompt and copy the result:</p>
             <div class="prompt-card">
               <div class="prompt-card-head">
                 <p class="prompt-title">Conversion prompt</p>
@@ -60,9 +63,8 @@ Output only valid lines for the app inside the code block.</code></pre>
         </div>
 
         <div class="step-block">
-          <div class="step-badge">3</div>
           <div class="step-content">
-            <label class="input-label" for="workout-input">Paste the converted workout</label>
+            <label class="input-label" for="workout-input"><span class="step-number">4.</span> Paste the converted workout</label>
             <p class="format-hint">One line per exercise: <code>Exercise Name | Sets | Reps | RestSeconds</code></p>
             <textarea
               id="workout-input"
@@ -72,15 +74,9 @@ Output only valid lines for the app inside the code block.</code></pre>
           </div>
         </div>
 
-        <div class="step-block">
-          <div class="step-badge">4</div>
-          <div class="step-content">
-            <p class="step-title">Load the workout into the app</p>
-            <div class="entry-actions">
-              <button id="load-workout" class="primary-button" type="button">Load Workout</button>
-              <button id="load-sample" class="secondary-button" type="button">Sample</button>
-            </div>
-          </div>
+        <div class="entry-actions">
+          <button id="load-workout" class="primary-button" type="button">Load Workout</button>
+          <button id="load-sample" class="secondary-button" type="button">Sample</button>
         </div>
 
         <p id="message" class="message" role="status" aria-live="polite"></p>
