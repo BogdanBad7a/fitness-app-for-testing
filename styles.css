@@ -81,8 +81,7 @@ h1 {
 .prompt-hint,
 .step-title,
 .step-line,
-.step-number,
-.paste-cue {
+.step-number {
   margin: 0;
 }
 
@@ -201,25 +200,6 @@ h1 {
   margin-top: 0;
   margin-bottom: 8px;
   font-weight: 600;
-}
-
-.paste-row {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 12px;
-  margin-bottom: 12px;
-  flex-wrap: wrap;
-}
-
-.paste-cue {
-  color: var(--muted);
-  font-size: 0.95rem;
-  font-weight: 600;
-}
-
-.paste-arrow {
-  color: var(--accent);
 }
 
 .format-hint {

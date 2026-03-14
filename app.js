@@ -12,7 +12,6 @@ const promptBox = document.querySelector("#prompt-box");
 const loadWorkoutButton = document.querySelector("#load-workout");
 const loadSampleButton = document.querySelector("#load-sample");
 const copyPromptButton = document.querySelector("#copy-prompt");
-const pasteWorkoutButton = document.querySelector("#paste-workout");
 const clearWorkoutButton = document.querySelector("#clear-workout");
 const previousSetButton = document.querySelector("#previous-set");
 const completeSetButton = document.querySelector("#complete-set");
@@ -53,21 +52,6 @@ copyPromptButton.addEventListener("click", async () => {
     setMessage("Prompt copied.", "success");
   } catch {
     setMessage("Could not copy automatically. Copy the prompt manually.", "error");
-  }
-});
-
-pasteWorkoutButton.addEventListener("click", async () => {
-  try {
-    const clipboardText = await navigator.clipboard.readText();
-    if (!clipboardText.trim()) {
-      setMessage("Clipboard is empty.", "error");
-      return;
-    }
-
-    input.value = clipboardText.trim();
-    setMessage("Workout pasted from clipboard.", "success");
-  } catch {
-    setMessage("Could not paste automatically. Paste the workout manually.", "error");
   }
 });
 
