@@ -373,10 +373,21 @@ function loadStoredState() {
     }
 
     const parsed = JSON.parse(raw);
-    return {
+    const restoredState = {
       ...defaultState(),
       ...parsed
     };
+
+    const isLegacySampleInput =
+      restoredState.rawInput === SAMPLE_WORKOUT &&
+      restoredState.exercises.length === 0 &&
+      restoredState.mode === "idle";
+
+    if (isLegacySampleInput) {
+      restoredState.rawInput = "";
+    }
+
+    return restoredState;
   } catch {
     return defaultState();
   }
